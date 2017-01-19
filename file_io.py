@@ -16,7 +16,7 @@ def read_file(file_name):
         try:
             with open(file_name) as f:
                 data = f.read()
-                temp_list.append(make_list(data))
+                temp_list.extend(make_list(data))
         except FileExistsError:
             pass
     return temp_list

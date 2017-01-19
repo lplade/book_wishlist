@@ -17,7 +17,7 @@ def setup():
 
     global counter, book_list
 
-    book_list.append(read_file(BOOKS_FILE_NAME))
+    book_list.extend(read_file(BOOKS_FILE_NAME))
     counter = read_file_int(COUNTER_FILE_NAME, book_list)
 
 
@@ -27,27 +27,20 @@ def shutdown():
     output_data = make_output_data()
     # Create data directory
     check_dir(DATA_DIR)
+    #write to book, counter files
     write_file(BOOKS_FILE_NAME, output_data)
     write_file(COUNTER_FILE_NAME, str(counter))
-    # with open(BOOKS_FILE_NAME, 'w') as f:
-    #     f.write(output_data)
-    #
-    # with open(COUNTER_FILE_NAME, 'w') as f:
-    #     f.write(str(counter))
 
 
 def get_books(**kwargs):
     ''' Return books from data store. With no arguments, returns everything. '''
 
     global book_list
-
     if len(kwargs) == 0:
         return book_list
-
     if 'read' in kwargs:
         read_books = [ book for book in book_list if book.read == kwargs['read'] ]
         return read_books
-
 
 
 def add_book(book):
