@@ -82,6 +82,22 @@ def generate_id():
     return counter
 
 
+def delete_book(book_id):
+    """
+    Delete book with given book_id. Return True if found, False otherwise.
+    :type book_id: int
+    :rtype: bool
+    """
+    global book_list
+
+    for book in book_list:
+        if book.id == book_id:
+            book_list.remove(book)  # remove matching book from list
+            return True
+
+    return False  # return False if book id is not found
+
+
 def set_read(book_id, read):
     '''Update book with given book_id to read. Return True if book is found in DB and update is made, False otherwise.'''
 
