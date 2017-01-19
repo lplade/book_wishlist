@@ -17,23 +17,23 @@ def setup():
 
     global counter, book_list
 
-    booklist.append(read_file(BOOKS_FILE_NAME))
-    counter = read_file_int(COUNTER_FILE_NAME)
+    book_list.append(read_file(BOOKS_FILE_NAME))
+    counter = read_file_int(COUNTER_FILE_NAME, book_list)
 
 
 def shutdown():
     '''Save all data to a file - one for books, one for the current counter value, for persistent storage'''
 
     output_data = make_output_data()
-
     # Create data directory
     check_dir(DATA_DIR)
-
-    with open(BOOKS_FILE_NAME, 'w') as f:
-        f.write(output_data)
-
-    with open(COUNTER_FILE_NAME, 'w') as f:
-        f.write(str(counter))
+    write_file(BOOKS_FILE_NAME, output_data)
+    write_file(COUNTER_FILE_NAME, str(counter))
+    # with open(BOOKS_FILE_NAME, 'w') as f:
+    #     f.write(output_data)
+    #
+    # with open(COUNTER_FILE_NAME, 'w') as f:
+    #     f.write(str(counter))
 
 
 def get_books(**kwargs):
