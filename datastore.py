@@ -99,7 +99,10 @@ def delete_book(book_id):
 
 
 def set_read(book_id, read):
-    '''Update book with given book_id to read. Return True if book is found in DB and update is made, False otherwise.'''
+    """
+    Update book with given book_id to read. Return True if book is found
+    in DB and update is made, False otherwise.
+    """
 
     global book_list
 
@@ -107,10 +110,10 @@ def set_read(book_id, read):
 
         if book.id == book_id:
             book.read = True
+            book.set_date_read()  # this defaults to today's date
             return True
 
-    return False # return False if book id is not found
-
+    return False  # return False if book id is not found
 
 
 def make_book_list(string_from_file):
