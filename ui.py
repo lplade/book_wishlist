@@ -2,8 +2,9 @@ from book import Book
 
 
 def display_menu_get_choice():
-
-    '''Display choices for user, return users' selection'''
+    """
+    Display choices for user, return users' selection
+    """
 
     print('''
         1. Show unread books (wishlist)
