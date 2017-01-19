@@ -1,6 +1,7 @@
 
 import os
 from book import Book
+from file_io import *
 
 DATA_DIR = 'data'
 BOOKS_FILE_NAME = os.path.join(DATA_DIR, 'wishlist.txt')
@@ -14,25 +15,10 @@ counter = 0
 def setup():
     ''' Read book info from file, if file exists. '''
 
-    global counter
+    global counter, book_list
 
-    try :
-        with open(BOOKS_FILE_NAME) as f:
-            data = f.read()
-            make_book_list(data)
-    except FileNotFoundError:
-        # First time program has run. Assume no books.
-        pass
-
-
-    try:
-        with open(COUNTER_FILE_NAME) as f:
-            try:
-                counter = int(f.read())
-            except:
-                counter = 0
-    except:
-        counter = len(book_list)
+    booklist.append(read_file(BOOKS_FILE_NAME))
+    counter = read_file_int(COUNTER_FILE_NAME)
 
 
 def shutdown():
@@ -41,10 +27,7 @@ def shutdown():
     output_data = make_output_data()
 
     # Create data directory
-    try:
-        os.mkdir(DATA_DIR)
-    except FileExistsError:
-        pass # Ignore - if directory exists, don't need to do anything. 
+    check_dir(DATA_DIR)
 
     with open(BOOKS_FILE_NAME, 'w') as f:
         f.write(output_data)
@@ -94,20 +77,6 @@ def set_read(book_id, read):
             return True
 
     return False # return False if book id is not found
-
-
-
-def make_book_list(string_from_file):
-    ''' turn the string from the file into a list of Book objects'''
-
-    global book_list
-
-    books_str = string_from_file.split('\n')
-
-    for book_str in books_str:
-        data = book_str.split(separator)
-        book = Book(data[0], data[1], data[2] == 'True', int(data[3]))
-        book_list.append(book)
 
 
 def make_output_data():
