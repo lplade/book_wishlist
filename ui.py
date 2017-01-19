@@ -20,10 +20,14 @@ def display_menu_get_choice():
 
 
 def show_list(books):
-    ''' Format and display a list of book objects'''
+    """
+    Format and display a list of book objects
+    :type books: list of Book
+    :return:
+    """
 
     if len(books) == 0:
-        print ('* No books *')
+        print('* No books *')
         return
 
     for book in books:
