@@ -12,6 +12,7 @@ def display_menu_get_choice():
         4. Add book to wishlist
         5. Delete book from list
         6. Edit book title & author
+        7. Rate book
         q. Quit
     ''')
 
@@ -47,11 +48,24 @@ def ask_for_book_id():
         except ValueError:
             print('Please enter an integer number')
 
+
 def get_new_book_information():
     '''Get new title for book'''
     title = input('Enter new title: ')
     author = input('Enter new author: ')
     return (title, author)
+
+
+def get_book_rating():
+    '''Get rating for book'''
+    while True:
+        try:
+            rating = int(input('How would you rate this book? (0-5) '))
+            break
+        except Exception:
+            print('Must enter a valid number.')
+    return rating
+
 
 def get_new_book_info():
 

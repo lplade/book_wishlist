@@ -80,6 +80,15 @@ def set_book_information(book_id, new_title, new_author):
         if book.id == book_id:
             book.title, book.author = new_title, new_author
 
+
+def set_book_rating(book_id, rating):
+    global book_list
+
+    for book in book_list:
+        if book.id == book_id:
+            book.rating = rating
+
+
 def set_read(book_id, read):
     '''Update book with given book_id to read. Return True if book is found in DB and update is made, False otherwise.'''
 
@@ -102,7 +111,7 @@ def make_output_data():
     output_data = []
 
     for book in book_list:
-        output = [ book.title, book.author, str(book.read), str(book.id) ]
+        output = [ book.title, book.author, str(book.read), str(book.id), str(book.rating) ]
         output_str = separator.join(output)
         output_data.append(output_str)
 

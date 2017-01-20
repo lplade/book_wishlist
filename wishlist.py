@@ -24,6 +24,9 @@ def handle_choice(choice):
     elif choice == '6':
         modify_book()
 
+    elif choice == '7':
+        rate_book()
+
     elif choice == 'q':
         quit()
 
@@ -58,6 +61,7 @@ def new_book():
     datastore.add_book(new_book)
     ui.message('Book added: ' + str(new_book))
 
+
 def modify_book():
     '''
     Get book ID from user, modify title/author
@@ -65,6 +69,13 @@ def modify_book():
     book_id = ui.ask_for_book_id()
     book_title, book_author = ui.get_new_book_information()
     datastore.set_book_information(book_id, book_title, book_author)
+
+
+def rate_book():
+    '''Get book ID from user, set rating'''
+    book_id = ui.ask_for_book_id()
+    book_rating = ui.get_book_rating()
+    datastore.set_book_rating(book_id, book_rating)
 
 
 def delete_book():
