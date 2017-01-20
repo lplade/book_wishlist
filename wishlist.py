@@ -16,7 +16,7 @@ def handle_choice(choice):
         book_read()
 
     elif choice == '4':
-        new_book()
+        check_duplicate_book()
 
     elif choice == '5':
         delete_book()
@@ -55,11 +55,20 @@ def book_read():
         ui.message('Book id not found in database')
 
 
-def new_book():
-    '''Get info from user, add new book'''
-    new_book = ui.get_new_book_info()
-    datastore.add_book(new_book)
-    ui.message('Book added: ' + str(new_book))
+def new_book(book):
+    '''Add new book'''
+    datastore.add_book(book)
+    ui.message('Book added: ' + str(book))
+
+def check_duplicate_book():
+    book = ui.get_new_book_info()
+    if datastore.check_book(book):
+        if ui.confirm_new_book():
+            new_book(book)
+        else:
+            ui.message('Aborting operation.')
+    else:
+        new_book(book)
 
 
 def modify_book():

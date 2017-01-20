@@ -42,6 +42,15 @@ def get_books(**kwargs):
         read_books = [ book for book in book_list if book.read == kwargs['read'] ]
         return read_books
 
+def check_book(new_book):
+    read_list = get_books(read=True)
+
+    for book in read_list:
+        if book.title == new_book.title \
+        or book.author == new_book.title:
+            return True
+
+    return False
 
 def add_book(book):
     ''' Add to db, set id value, return Book'''
@@ -102,6 +111,16 @@ def set_read(book_id, read):
 
     return False # return False if book id is not found
 
+def make_list(string_from_file):
+    '''Creates list to return to read_file function'''
+    temp_list = []
+    books_str = string_from_file.split('\n')
+
+    for book_str in books_str:
+        data = book_str.split(separator)
+        book = Book(data[0], data[1], data[2] == 'True', int(data[3]), int(data[4]))
+        temp_list.append(book)
+    return temp_list
 
 def make_output_data():
     ''' create a string containing all data on books, for writing to output file'''

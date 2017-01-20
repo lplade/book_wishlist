@@ -1,4 +1,5 @@
 import os
+import datastore
 from book import Book
 
 separator = '^^^'
@@ -16,7 +17,7 @@ def read_file(file_name):
         with open(file_name) as f:
             data = f.read()
             try:
-                temp_list.extend(make_list(data))
+                temp_list.extend(datastore.make_list(data))
             except Exception:
                 pass
     except FileExistsError:
@@ -41,14 +42,3 @@ def check_dir(data_dir):
         os.mkdir(data_dir)
     except FileExistsError:
         pass
-
-def make_list(string_from_file):
-    '''Creates list to return to read_file function'''
-    temp_list = []
-    books_str = string_from_file.split('\n')
-
-    for book_str in books_str:
-        data = book_str.split(separator)
-        book = Book(data[0], data[1], data[2] == 'True', int(data[3]), int(data[4]))
-        temp_list.append(book)
-    return temp_list

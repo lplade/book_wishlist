@@ -48,6 +48,14 @@ def ask_for_book_id():
         except ValueError:
             print('Please enter an integer number')
 
+def confirm_new_book():
+    command = input('Book already in read list! \"Y\" to continue: ')
+    command.upper()
+    if command == 'Y' \
+    or command == 'YES':
+        return True
+    else:
+        return False
 
 def get_new_book_information():
     '''Get new title for book'''
