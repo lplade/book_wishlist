@@ -2,16 +2,14 @@ from book import Book
 
 
 def display_menu_get_choice():
-    """
-    Display choices for user, return users' selection
-    """
+
+    '''Display choices for user, return users' selection'''
 
     print('''
         1. Show unread books (wishlist)
         2. Show books that have been read
         3. Mark a book as read
         4. Add book to wishlist
-        5. Remove book from wishlist
         q. Quit
     ''')
 
@@ -21,14 +19,10 @@ def display_menu_get_choice():
 
 
 def show_list(books):
-    """
-    Format and display a list of book objects
-    :type books: list of Book
-    :return:
-    """
+    ''' Format and display a list of book objects'''
 
     if len(books) == 0:
-        print('* No books *')
+        print ('* No books *')
         return
 
     for book in books:
@@ -38,16 +32,14 @@ def show_list(books):
 
 
 def ask_for_book_id():
-    """
-    Ask user for book id, validate to ensure it is a positive integer
-    :rtype: int
-    """
+
+    ''' Ask user for book id, validate to ensure it is a positive integer '''
 
     while True:
         try:
-            book_id = int(input('Enter book id:'))
-            if book_id >= 0:
-                return book_id
+            id = int(input('Enter book id:'))
+            if id >= 0:
+                return id
             else:
                 print('Please enter a positive number ')
         except ValueError:

@@ -1,5 +1,5 @@
 
-import os
+import os, file_io
 from book import Book
 from file_io import *
 
@@ -17,8 +17,8 @@ def setup():
 
     global counter, book_list
 
-    book_list.extend(read_file(BOOKS_FILE_NAME))
-    counter = read_file_int(COUNTER_FILE_NAME, book_list)
+    book_list.extend(file_io.read_file(BOOKS_FILE_NAME))
+    counter = file_io.read_file_int(COUNTER_FILE_NAME, book_list)
 
 
 def shutdown():
@@ -26,10 +26,10 @@ def shutdown():
 
     output_data = make_output_data()
     # Create data directory
-    check_dir(DATA_DIR)
+    file_io.check_dir(DATA_DIR)
     #write to book, counter files
-    write_file(BOOKS_FILE_NAME, output_data)
-    write_file(COUNTER_FILE_NAME, str(counter))
+    file_io.write_file(BOOKS_FILE_NAME, output_data)
+    file_io.write_file(COUNTER_FILE_NAME, str(counter))
 
 
 def get_books(**kwargs):
@@ -50,7 +50,6 @@ def add_book(book):
 
     book.id = generate_id()
     book_list.append(book)
-
 
 def generate_id():
     global counter
