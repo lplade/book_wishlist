@@ -15,7 +15,10 @@ def read_file(file_name):
     try:
         with open(file_name) as f:
             data = f.read()
-            temp_list.extend(make_list(data))
+            try:
+                temp_list.extend(make_list(data))
+            except Exception:
+                pass
     except FileExistsError:
         pass
     return temp_list

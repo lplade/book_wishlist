@@ -17,9 +17,8 @@ def setup():
 
     global counter, book_list
 
-    if len(book_list) > 0:
-        book_list.extend(file_io.read_file(BOOKS_FILE_NAME))
-        counter = file_io.read_file_int(COUNTER_FILE_NAME, book_list)
+    book_list.extend(file_io.read_file(BOOKS_FILE_NAME))
+    counter = file_io.read_file_int(COUNTER_FILE_NAME, book_list)
 
 
 def shutdown():
