@@ -21,6 +21,9 @@ def handle_choice(choice):
     elif choice == '5':
         delete_book()
 
+    elif choice == '6':
+        modify_book()
+        
     elif choice == 'q':
         quit()
 
@@ -54,6 +57,14 @@ def new_book():
     new_book = ui.get_new_book_info()
     datastore.add_book(new_book)
     ui.message('Book added: ' + str(new_book))
+
+def modify_book():
+    '''
+    Get book ID from user, modify title
+    '''
+    book_id = ui.ask_for_book_id()
+    book_title = ui.get_new_book_title()
+    datastore.set_book_title(book_id, book_title)
 
 
 def delete_book():

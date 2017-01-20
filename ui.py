@@ -10,6 +10,8 @@ def display_menu_get_choice():
         2. Show books that have been read
         3. Mark a book as read
         4. Add book to wishlist
+        5. Delete book from list
+        6. Edit book title
         q. Quit
     ''')
 
@@ -45,6 +47,10 @@ def ask_for_book_id():
         except ValueError:
             print('Please enter an integer number')
 
+def get_new_book_title():
+    '''Get new title for book'''
+    title = input('Enter new title: ')
+    return title
 
 def get_new_book_info():
 
