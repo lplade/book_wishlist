@@ -30,4 +30,5 @@ class Book:
 
 
     def __eq__(self, other):
+        #return ((self.title, self.author, self.read, self.id) == (other.title,other.author,other.read,other.id))
         return self.title == other.title and self.author == other.author and self.read == other.read and self.id==other.id
