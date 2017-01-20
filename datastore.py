@@ -72,13 +72,13 @@ def delete_book(book_id):
 
     return False  # return False if book id is not found
 
-def set_book_title(book_id, new_title):
+def set_book_information(book_id, new_title, new_author):
     '''Set book object title to new_title parameter'''
     global book_list
 
     for book in book_list:
         if book.id == book_id:
-            book.title = new_title
+            book.title, book.author = new_title, new_author
 
 def set_read(book_id, read):
     '''Update book with given book_id to read. Return True if book is found in DB and update is made, False otherwise.'''

@@ -12,13 +12,12 @@ def write_file(file_name, data):
 def read_file(file_name):
     '''Read lines from wishlist.txt'''
     temp_list = []
-    if len(temp_list) > 0:
-        try:
-            with open(file_name) as f:
-                data = f.read()
-                temp_list.extend(make_list(data))
-        except FileExistsError:
-            pass
+    try:
+        with open(file_name) as f:
+            data = f.read()
+            temp_list.extend(make_list(data))
+    except FileExistsError:
+        pass
     return temp_list
 
 def read_file_int(file_name, book_list):
