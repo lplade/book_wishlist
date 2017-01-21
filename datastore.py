@@ -42,12 +42,12 @@ def get_books(**kwargs):
         read_books = [ book for book in book_list if book.read == kwargs['read'] ]
         return read_books
 
-def check_book(new_book):
+def check_book(book_title, book_author):
     read_list = get_books(read=True)
 
     for book in read_list:
-        if book.title == new_book.title \
-        or book.author == new_book.title:
+        if book.title == book_title \
+        or book.author == book_author:
             return True
 
     return False
@@ -59,6 +59,14 @@ def add_book(book):
 
     book.id = generate_id()
     book_list.append(book)
+
+
+def find_book(book_title, book_author):
+    global book_list
+
+    book = [book for book in book_list if book.title == book_title or book.author == book_author]
+
+    return book
 
 def generate_id():
     global counter

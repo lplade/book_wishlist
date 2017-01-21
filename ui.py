@@ -13,6 +13,7 @@ def display_menu_get_choice():
         5. Delete book from list
         6. Edit book title & author
         7. Rate book
+        8. Search for a book
         q. Quit
     ''')
 
@@ -75,13 +76,11 @@ def get_book_rating():
     return rating
 
 
-def get_new_book_info():
-
+def get_book_info():
     ''' Get title and author of new book from user '''
-
     title = input('Enter title: ')
     author = input('Enter author: ')
-    return Book(title, author)
+    return (title, author)
 
 
 def message(msg):

@@ -27,6 +27,9 @@ def handle_choice(choice):
     elif choice == '7':
         rate_book()
 
+    elif choice == '8':
+        search_books()
+
     elif choice == 'q':
         quit()
 
@@ -55,20 +58,22 @@ def book_read():
         ui.message('Book id not found in database')
 
 
-def new_book(book):
+def new_book(book_title, book_author):
     '''Add new book'''
+    book = Book(book_title, book_author)
     datastore.add_book(book)
     ui.message('Book added: ' + str(book))
 
+
 def check_duplicate_book():
-    book = ui.get_new_book_info()
-    if datastore.check_book(book):
+    book_title, book_author = ui.get_book_info()
+    if datastore.check_book(book_title, book_author):
         if ui.confirm_new_book():
-            new_book(book)
+            new_book(book_title, book_author)
         else:
             ui.message('Aborting operation.')
     else:
-        new_book(book)
+        new_book(book_title, book_author)
 
 
 def modify_book():
@@ -76,7 +81,7 @@ def modify_book():
     Get book ID from user, modify title/author
     '''
     book_id = ui.ask_for_book_id()
-    book_title, book_author = ui.get_new_book_information()
+    book_title, book_author = ui.get_book_info()
     datastore.set_book_information(book_id, book_title, book_author)
 
 
@@ -86,6 +91,11 @@ def rate_book():
     book_rating = ui.get_book_rating()
     datastore.set_book_rating(book_id, book_rating)
 
+
+def search_books():
+    book_title, book_author = ui.get_book_info()
+    found_books = datastore.find_book(book_title, book_author)
+    ui.show_list(found_books)
 
 def delete_book():
     """
