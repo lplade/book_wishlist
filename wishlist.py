@@ -1,4 +1,4 @@
-#Main program
+# Main program
 
 import ui, datastore
 from book import Book
@@ -43,6 +43,7 @@ def show_read():
 def book_read():
     ''' Get choice from user, edit datastore, display success/error'''
     book_id = ui.ask_for_book_id()
+    # TODO include hook for date read prompt
     if datastore.set_read(book_id, True):
         ui.message('Successfully updated')
     else:

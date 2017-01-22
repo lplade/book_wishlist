@@ -111,6 +111,7 @@ def set_read(book_id, read):
         if book.id == book_id:
             book.read = True
             book.set_date_read()  # this defaults to today's date
+            # TODO expand to allow passing a date
             return True
 
     return False  # return False if book id is not found

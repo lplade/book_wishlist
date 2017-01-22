@@ -1,5 +1,6 @@
 import datetime
 
+
 class Book:
     """ Represents one book in a user's list of books"""
 
@@ -20,23 +21,20 @@ class Book:
     def set_id(self, book_id):
         self.id = book_id
 
-    def set_date_read(self, date_read=NO_DATE):
-        if date_read == (1970, 1, 1):
-            date_read = datetime.date.today()
+    def set_date_read(self, new_date_read=NO_DATE):
+        if new_date_read == datetime.date(1970, 1, 1):
+            new_date_read = datetime.date.today()
         else:
-            # TODO validate a passed date to be in datetime.date format
-            # not used at this point
+            # TODO validate this?
             pass
-        self.date_read = date_read
+        self.date_read = new_date_read
 
     def __str__(self):
         read_str = 'no'
+        # Display date read in 2016-12-31 format if read, otherwise display 'no'
         if self.read:
-            read_year = self.date_read.year()
-            read_month = self.date_read.month()
-            read_day = self.date_read.day()
-            template = "{}-{}-{}"
-            read_str = template.format(read_year, read_month, read_day)
+            # Native datetime str format happens to be the one we want!
+            read_str = str(self.date_read)
 
         id_str = self.id
         if id == -1:

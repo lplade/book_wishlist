@@ -54,6 +54,11 @@ def ask_for_book_id():
             print('Please enter an integer number')
 
 
+def ask_for_date_read():
+    # TODO implement this
+    pass
+
+
 def get_new_book_info():
 
     ''' Get title and author of new book from user '''
