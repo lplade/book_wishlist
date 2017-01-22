@@ -74,13 +74,16 @@ def get_new_book_information():
 
 def get_book_rating():
     '''Get rating for book'''
+    low, high = 0, 5
     while True:
         try:
             rating = int(input('How would you rate this book? (0-5) '))
-            break
-        except Exception:
+            if low <= rating <= high:
+                return rating
+            else:
+                print('Value out of range.')
+        except ValueError:
             print('Must enter a valid number.')
-    return rating
 
 
 def get_book_info():
