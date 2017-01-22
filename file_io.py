@@ -16,10 +16,7 @@ def read_file(file_name):
     try:
         with open(file_name) as f:
             data = f.read()
-            try:
-                temp_list.extend(datastore.make_list(data))
-            except Exception:  # what are we trapping for here -lpl
-                pass
+            temp_list.extend(datastore.make_list(data))
     except FileNotFoundError:
         # First time program has run. Assume no books.
         pass
