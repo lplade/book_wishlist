@@ -14,10 +14,27 @@ def display_menu_get_choice():
         6. Edit book title & author
         7. Rate book
         8. Search for a book
+        9. Change sort order
         q. Quit
     ''')
 
     choice = input('Enter your selection: ')
+
+    return choice
+
+
+def display_menu_sort_order():
+    """
+
+    :return:
+    """
+    print("""
+        1. Sort by ID #
+        2. Sort by author
+        3. Sort by title
+    """)
+
+    choice = input("Enter your selection: ")
 
     return choice
 
