@@ -7,7 +7,7 @@ class Book:
     """ Represents one book in a user's list of books"""
 
     NO_ID = -1
-    NO_DATE = 0  # this date means uninitialized
+    NO_DATE = datetime.date(1970, 1, 1)  # this date means uninitialized
     UNRATED = -1
 
     def __init__(self, title, author, read=False,
@@ -103,6 +103,7 @@ class Book:
 
 # Lifted from Introducing Python, p. 191
 class _DTEncoder(json.JSONEncoder):
+    # extends JSONEncoder
     def default(self, obj):
         # isinstance() checks the type of obj
         if isinstance(obj, datetime.date):
