@@ -40,11 +40,11 @@ def ask_for_book_id():
 
     while True:
         try:
-            id = int(input('Enter book id:'))
-            if id >= 0:
-                return id
+            book_id = int(input('Enter book id: '))
+            if book_id >= 0:
+                return book_id
             else:
-                print('Please enter a positive number ')
+                print('Please enter a positive number')
         except ValueError:
             print('Please enter an integer number')
 
@@ -52,8 +52,7 @@ def ask_for_book_id():
 def confirm_new_book():
     command = input('Book already in read list! \"Y\" to continue: ')
     command.upper()
-    if command == 'Y' \
-    or command == 'YES':
+    if command == 'Y' or command == 'YES':
         return True
     else:
         return False
