@@ -99,6 +99,7 @@ def search_books():
     found_books = datastore.find_book(book_title, book_author)
     ui.show_list(found_books)
 
+
 def delete_book():
     """
     Get book id from user, deletes book

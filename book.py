@@ -34,12 +34,16 @@ class Book:
         title = parsed_json["title"]
         author = parsed_json["author"]
         read = parsed_json["read"]
-        book_id = parsed_json["read"]
+        book_id = parsed_json["book_id"]
 
         # date should be stored in ISO YYYY-MM-DD format,
         # parse it into a datetime.date object
-        _yyyy, _mm, _dd = parsed_json["date_read"].split('-')
-        date_read = datetime.date(_yyyy, _mm, _dd)
+        raw_date_read = parsed_json["date_read"]
+        try:
+            _yyyy, _mm, _dd = raw_date_read.split('-')
+            date_read = datetime.date(_yyyy, _mm, _dd)
+        except:  # Which exception? Trying to catch uninitialized case
+            date_read = raw_date_read
 
         rating = parsed_json["rating"]
 
@@ -96,6 +100,7 @@ class Book:
 
 
 # Helper class
+
 # Lifted from Introducing Python, p. 191
 class _DTEncoder(json.JSONEncoder):
     def default(self, obj):
@@ -103,7 +108,6 @@ class _DTEncoder(json.JSONEncoder):
         if isinstance(obj, datetime.date):
             return obj.isoformat()
         # else it's something the normal decoder knows:
-        return json.JSONEncoder.default(self, obj)
-
-
+        # return json.JSONEncoder.default(self, obj)
+        return obj.__dict__
 

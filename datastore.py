@@ -59,7 +59,7 @@ def add_book(book):
 
     global book_list
 
-    book.id = generate_id()
+    book.book_id = generate_id()
     book_list.append(book)
 
 
@@ -86,7 +86,7 @@ def delete_book(book_id):
     global book_list
 
     for book in book_list:
-        if book.id == book_id:
+        if book.book_id == book_id:
             book_list.remove(book)  # remove matching book from list
             return True
 
@@ -98,7 +98,7 @@ def set_book_information(book_id, new_title, new_author):
     global book_list
 
     for book in book_list:
-        if book.id == book_id:
+        if book.book_id == book_id:
             book.title, book.author = new_title, new_author
 
 
@@ -120,7 +120,7 @@ def set_read(book_id, read):
 
     for book in book_list:
 
-        if book.id == book_id:
+        if book.book_id == book_id:
             book.read = True
             book.set_date_read()  # this defaults to today's date
             # TODO expand to allow passing a date
