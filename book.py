@@ -1,4 +1,6 @@
 import datetime
+import json
+from time import mktime
 
 
 class Book:
@@ -47,7 +49,8 @@ class Book:
             rating_str = 'Not Rated'
 
         template = 'id: {} Title: {} Author: {} Read: {} Rating: {}'
-        return template.format(id_str, self.title, self.author, read_str, rating_str)
+        return template.format(id_str, self.title, self.author,
+                               read_str, rating_str)
 
     def __eq__(self, other):
 
@@ -55,5 +58,28 @@ class Book:
         #        self.read == other.read and self.id == other.id
 
         # why this change? -lpl
-        return (self.title, self.author, self.read, self.id) == (other.title, other.author, other.read, other.id)
+        return (self.title, self.author, self.read, self.id) == \
+               (other.title, other.author, other.read, other.id)
+
+    def to_json(self):
+        """
+        This serializes contents of current object to json string
+        :rtype: str
+        :return:
+        """
+        # we need a special encoder to handle the datetime.date object
+        return json.dumps(self, cls=DTEncoder)
+
+
+# Helper class
+# Lifted from Introducing Python, p. 191
+class DTEncoder(json.JSONEncoder):
+    def default(self, obj):
+        # isinstance() checks the type of obj
+        if isinstance(obj, datetime.date):
+            return int(mktime(obj.timetuple()))  # should be epoch time
+        # else it's something the normal decoder knows:
+        return json.JSONEncoder.default(self, obj)
+
+
 

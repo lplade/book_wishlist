@@ -1,6 +1,7 @@
 # Main program
 
-import ui, datastore
+import ui
+import datastore
 from book import Book
 
 

@@ -1,8 +1,10 @@
 import os
+import json
 import datastore
 from book import Book
 
-separator = '^^^'
+# separator = '^^^'
+
 
 def write_file(file_name, data):
     '''Write passed data to file'''
@@ -22,17 +24,19 @@ def read_file(file_name):
         pass
     return temp_list
 
+
 def read_file_int(file_name, book_list):
     '''Read counter information from books'''
     try:
         with open(file_name) as f:
             try:
                 counter = int(f.read())
-            except:
+            except IOError:
                 counter = 0
-    except:
+    except IOError:
         counter = len(book_list)
     return counter
+
 
 def check_dir(data_dir):
     '''Check data directory'''

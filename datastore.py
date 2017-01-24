@@ -1,7 +1,8 @@
 
-import os, file_io
+import os
+import file_io
 from book import Book
-from file_io import *
+# from file_io import *
 
 DATA_DIR = 'data'
 BOOKS_FILE_NAME = os.path.join(DATA_DIR, 'wishlist.txt')
@@ -122,11 +123,13 @@ def set_read(book_id, read):
             # TODO expand to allow passing a date
             return True
 
-
     return False # return False if book id is not found
 
+
 def make_list(string_from_file):
-    '''Creates list to return to read_file function'''
+    """
+    Creates list to return to read_file function
+    """
     temp_list = []
     books_str = string_from_file.split('\n')
 
@@ -136,8 +139,11 @@ def make_list(string_from_file):
         temp_list.append(book)
     return temp_list
 
+
 def make_output_data():
-    ''' create a string containing all data on books, for writing to output file'''
+    """
+    create a string containing all data on books, for writing to output file
+    """
 
     global book_list
 
