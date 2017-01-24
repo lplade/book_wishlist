@@ -31,6 +31,9 @@ def handle_choice(choice):
     elif choice == '8':
         search_books()
 
+    elif choice == '9':
+        change_sort_order()
+
     elif choice == 'q':
         quit()
 
@@ -112,6 +115,23 @@ def delete_book():
         ui.message("Book id not found in database")
 
 
+def change_sort_order():
+    """
+    Prompt to change order books are stored in
+    :return:
+    """
+    choice = ui.display_menu_sort_order()
+
+    if choice == '1':
+        datastore.sort_list_by_id()
+    elif choice == '2':
+        datastore.sort_list_by_author()
+    elif choice == '3':
+        datastore.sort_list_by_title()
+    else:
+        ui.message("Please make a valid choice")
+
+
 def quit():
     '''Perform shutdown tasks'''
     datastore.shutdown()
@@ -122,10 +142,10 @@ def main():
 
     datastore.setup()
 
-    quit = 'q'
+    _quit = 'q'
     choice = None
 
-    while choice != quit:
+    while choice != _quit:
         choice = ui.display_menu_get_choice()
         handle_choice(choice)
 

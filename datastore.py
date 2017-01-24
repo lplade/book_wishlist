@@ -1,13 +1,9 @@
 import os
 import file_io
-from book import Book
-# from file_io import *
 
 DATA_DIR = 'data'
 BOOKS_FILE_NAME = os.path.join(DATA_DIR, 'wishlist.txt')
 COUNTER_FILE_NAME = os.path.join(DATA_DIR, 'counter.txt')
-
-# separator = '^^^'  # a string probably not in any valid data relating to a book
 
 book_list = []
 counter = 0
@@ -23,7 +19,10 @@ def setup():
 
 
 def shutdown():
-    """Save all data to a file - one for books, one for the current counter value, for persistent storage"""
+    """
+    Save all data to a file -
+    one for books, one for the current counter value, for persistent storage
+    """
     output_data = make_output_data()
     # Create data directory
     file_io.check_dir(DATA_DIR)
@@ -48,7 +47,7 @@ def check_book(book_title, book_author):
 
     for book in read_list:
         if book.title == book_title \
-        or book.author == book_author:
+                or book.author == book_author:
             return True
 
     return False
@@ -66,7 +65,10 @@ def add_book(book):
 def find_book(book_title, book_author):
     global book_list
 
-    book = [book for book in book_list if book.title == book_title or book.author == book_author]
+    book = [
+        book for book in book_list
+        if book.title == book_title or book.author == book_author
+        ]
 
     return book
 
@@ -145,3 +147,36 @@ def make_output_data():
     all_books_string = '\n'.join(output_data)
 
     return all_books_string
+
+
+def sort_list_by_author():
+    """
+    Sorts the book list alphabetically by author
+    :return:
+    """
+    global book_list
+
+    # This should in-place sort by the Book.author field
+    book_list.sort(key=lambda x: x.author)
+
+    # TODO trap if sort fails? Return True if it succeeds?
+
+
+def sort_list_by_title():
+    """
+    Sorts the book list alphabetically by title
+    :return:
+    """
+    global book_list
+
+    book_list.sort(key=lambda x: x.title)
+
+
+def sort_list_by_id():
+    """
+    Sorts the book list alphabetically by id
+    :return:
+    """
+    global book_list
+
+    book_list.sort(key=lambda x: x.book_id)
