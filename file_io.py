@@ -2,8 +2,6 @@ import os
 import datastore
 from book import Book
 
-# separator = '^^^'
-
 
 def write_file(file_name, data):
     '''Write passed data to file'''
@@ -19,8 +17,9 @@ def read_file(file_name):
     book_list = []
     try:
         with open(file_name) as f:
-            data = f.read()
-            book_list.extend(datastore.make_list(data))
+            for json_line in f:
+                book = Book.from_json(json_line)
+                book_list.append(book)
     except FileNotFoundError:
         # First time program has run. Assume no books.
         pass
