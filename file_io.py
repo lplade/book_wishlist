@@ -1,5 +1,4 @@
 import os
-import json
 import datastore
 from book import Book
 
@@ -13,16 +12,19 @@ def write_file(file_name, data):
 
 
 def read_file(file_name):
-    '''Read lines from wishlist.txt'''
-    temp_list = []
+    """
+    Read lines from wishlist.txt
+    :rtype: list of Book
+    """
+    book_list = []
     try:
         with open(file_name) as f:
             data = f.read()
-            temp_list.extend(datastore.make_list(data))
+            book_list.extend(datastore.make_list(data))
     except FileNotFoundError:
         # First time program has run. Assume no books.
         pass
-    return temp_list
+    return book_list
 
 
 def read_file_int(file_name, book_list):

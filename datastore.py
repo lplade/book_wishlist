@@ -1,4 +1,3 @@
-
 import os
 import file_io
 from book import Book
@@ -8,13 +7,14 @@ DATA_DIR = 'data'
 BOOKS_FILE_NAME = os.path.join(DATA_DIR, 'wishlist.txt')
 COUNTER_FILE_NAME = os.path.join(DATA_DIR, 'counter.txt')
 
-separator = '^^^'  # a string probably not in any valid data relating to a book
+# separator = '^^^'  # a string probably not in any valid data relating to a book
 
 book_list = []
 counter = 0
 
+
 def setup():
-    ''' Read book info from file, if file exists. '''
+    """ Read book info from file, if file exists. """
 
     global counter, book_list
 
