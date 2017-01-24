@@ -1,6 +1,7 @@
 # Main program
 
-import ui, datastore
+import ui
+import datastore
 from book import Book
 
 
@@ -97,6 +98,7 @@ def search_books():
     book_title, book_author = ui.get_book_info()
     found_books = datastore.find_book(book_title, book_author)
     ui.show_list(found_books)
+
 
 def delete_book():
     """
