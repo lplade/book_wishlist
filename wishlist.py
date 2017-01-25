@@ -35,7 +35,7 @@ def handle_choice(choice):
         change_sort_order()
 
     elif choice == 'q':
-        quit()
+        quit_and_save()
 
     else:
         ui.message('Please enter a valid selection')
@@ -56,8 +56,8 @@ def show_read():
 def book_read():
     ''' Get choice from user, edit datastore, display success/error'''
     book_id = ui.ask_for_book_id()
-    # TODO include hook for date read prompt
-    if datastore.set_read(book_id, True):
+    date_read = ui.ask_for_date_read()
+    if datastore.set_read(book_id, date_read, True):
         ui.message('Successfully updated')
     else:
         ui.message('Book id not found in database')
@@ -122,18 +122,21 @@ def change_sort_order():
     """
     choice = ui.display_menu_sort_order()
 
-    if choice == '1':
-        datastore.sort_list_by_id()
-    elif choice == '2':
-        datastore.sort_list_by_author()
-    elif choice == '3':
-        datastore.sort_list_by_title()
-    else:
-        ui.message("Please make a valid choice")
+    while True:  # loop until we get a valid number
+        if choice == '1':
+            datastore.sort_list_by_id()
+        elif choice == '2':
+            datastore.sort_list_by_author()
+        elif choice == '3':
+            datastore.sort_list_by_title()
+        else:
+            ui.message("Please make a valid choice")
+            continue
+        break
 
 
-def quit():
-    '''Perform shutdown tasks'''
+def quit_and_save():
+    """Perform shutdown tasks"""
     datastore.shutdown()
     ui.message('Bye!')
 
