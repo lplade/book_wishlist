@@ -112,10 +112,13 @@ def set_book_rating(book_id, rating):
             book.rating = rating
 
 
-def set_read(book_id, read):
+def set_read(book_id, date_read, read):
     """
     Update book with given book_id to read. Return True if book is found
     in DB and update is made, False otherwise.
+    :type book_id: int
+    :type date_read: datetime.date
+    :type read: bool
     """
 
     global book_list
@@ -124,8 +127,7 @@ def set_read(book_id, read):
 
         if book.book_id == book_id:
             book.read = True
-            book.set_date_read()  # this defaults to today's date
-            # TODO expand to allow passing a date
+            book.set_date_read(date_read)
             return True
 
     return False  # return False if book id is not found

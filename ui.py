@@ -1,4 +1,5 @@
 # from book import Book
+import datetime
 
 
 def display_menu_get_choice():
@@ -76,8 +77,28 @@ def confirm_new_book():
 
 
 def ask_for_date_read():
-    # TODO implement this
-    pass
+    """
+    Prompt for year, month, and date, return a datetime.date
+    <Enter>x3 will use today's date
+    :return:
+    """
+    # get default fields
+    now_year = datetime.date.today().year
+    now_month = datetime.date.today().month
+    now_day = datetime.date.today().day
+
+    # TODO better input validation
+    year = input("Enter year read [" + str(now_year) + "]: ")
+    if year == "":
+        year = str(now_year)
+    month = input("Enter month read [" + str(now_month) + "]: ")
+    if month == "":
+        month = str(now_month)
+    day = input("Enter day read [" + str(now_day) + "]: ")
+    if day == "":
+        day = str(now_day)
+
+    return datetime.date(int(year), int(month), int(day))
 
 
 def get_new_book_information():
